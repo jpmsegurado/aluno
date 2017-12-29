@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AddTurmaPage } from '../add-turma/add-turma';
 import { TurmaProvider } from '../../providers/turma/turma';
+import { TurmaPage } from '../turma/turma';
 
 @Component({
   selector: 'page-home',
@@ -30,6 +31,10 @@ export class HomePage {
     }, () => {
       this.loading = false;
     });
+  }
+
+  openTurma(turma) {
+    this.navCtrl.push(TurmaPage, { turma });
   }
 
   addTurma() {

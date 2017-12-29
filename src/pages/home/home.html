@@ -23,7 +23,7 @@
   </blank-state>
 
   <ion-list *ngIf="turmas.length > 0">
-    <button ion-item *ngFor="let turma of turmas">
+    <button ion-item *ngFor="let turma of turmas" (click)="openTurma(turma)">
       <h2>{{ turma.professor.username }}</h2>
       <p>{{ turma.nome }}</p>
       <ion-icon item-right name="ios-arrow-forward" hideWhen="ios"></ion-icon>

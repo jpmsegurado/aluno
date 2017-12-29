@@ -47,8 +47,35 @@ export class TurmaProvider {
     query.equalTo('aluno', user);
     return query.find().then((inscricoes) => this.turmas = inscricoes.map(ins => ins.toJSON().turma)).then(() => {
       this.observer.next(this.turmas);
-      console.log(this.turmas);
     })
+  }
+
+  getOne(id) {
+    const query = new Parse.Query('Turma');
+    query.equalTo('objectId', id);
+    query.include('professor');
+    return query.first().then(item => item.toJSON());
+  }
+
+  getAtividades(turmaId) {
+    const query = new Parse.Query('Atividade');
+    const Turma = Parse.Object.extend('Turma');
+    const turma = new Turma();
+    turma.id = turmaId;
+    query.equalTo('turma', turma);
+    return query.find().then(atividades => atividades.map(item => item.toJSON()));
+  }
+
+  sendAnswer(questoes, atividadeId) {
+    const Resposta = Parse.Object.extend('Resposta');
+    const Atividade = Parse.Object.extend('Atividade');
+    const resposta = new Resposta();
+    const atividade = new Atividade();
+    const user = Parse.User.current();
+    resposta.set('aluno', user);
+    resposta.set('atividade', atividade);
+    resposta.set('questoes', questoes)
+    return resposta.save();
   }
 
   getTurmas() {
