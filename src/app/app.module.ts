@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginPage } from '../pages/login/login';
 import { BlankStateComponent } from '../components/blank-state/blank-state';
 import { AddTurmaPage } from '../pages/add-turma/add-turma';
+import { TurmaProvider } from '../providers/turma/turma';
 
 Parse.serverURL = 'https://professor-server.herokuapp.com/parse';
 Parse.initialize('9ac78096f6a609ac63227bc1ba09a004b8d513f7', '9ac78096f6a609ac63227bc1ba09a004b8d513f7');
@@ -41,7 +42,8 @@ Parse.initialize('9ac78096f6a609ac63227bc1ba09a004b8d513f7', '9ac78096f6a609ac63
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider
+    UserProvider,
+    TurmaProvider
   ]
 })
 export class AppModule {}

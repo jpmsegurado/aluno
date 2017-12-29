@@ -9,17 +9,31 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
   <blank-state *ngIf="loading" showSpinner="true">
     <p>Carregando...</p>
   </blank-state>
 
-  <blank-state *ngIf="turmas.length === 0" showIcon="true" iconName="sad">
+  <blank-state *ngIf="turmas.length === 0 && !loading" showIcon="true" iconName="sad">
     <p>Você não se inscreveu em nenhuma turma</p>
     <button ion-button block (click)="addTurma()">
       Inscrever-ve em uma turma
     </button>
   </blank-state>
+
+  <ion-list *ngIf="turmas.length > 0">
+    <button ion-item *ngFor="let turma of turmas">
+      <h2>{{ turma.professor.username }}</h2>
+      <p>{{ turma.nome }}</p>
+      <ion-icon item-right name="ios-arrow-forward" hideWhen="ios"></ion-icon>
+    </button>
+  </ion-list>
+
+  <ion-fab bottom right *ngIf="turmas.length > 0">
+    <button ion-fab icon-only (click)="addTurma()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 
 </ion-content>

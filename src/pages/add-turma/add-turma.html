@@ -7,12 +7,27 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>add-turma</ion-title>
+    <ion-title>Inscrição em turma</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+  <form [formGroup]="form" (submit)="submit(form)">
+    <ion-item>
+      <ion-label floating>Chave de inscrição</ion-label>
+      <ion-input formControlName="chave" type="text"></ion-input>
+    </ion-item>
+
+    <div padding>
+      <button ion-button block [disabled]="loading" type="submit">
+        Fazer inscrição
+        <ion-spinner *ngIf="loading"></ion-spinner>
+      </button>
+    </div>
+
+  </form>
 
 </ion-content>
