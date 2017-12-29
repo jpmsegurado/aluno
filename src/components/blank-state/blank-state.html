@@ -1,0 +1,8 @@
+<div class="blank-state">
+  <div class="content">
+    <ion-icon *ngIf="!!showIcon && !showSpinner" [name]="iconName"></ion-icon>
+    <ion-spinner *ngIf="!!showSpinner"></ion-spinner>
+    <img *ngIf="!showIcon && !showSpinner" [src]="src"> 
+    <ng-content></ng-content>
+  </div>
+</div>

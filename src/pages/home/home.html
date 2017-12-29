@@ -1,14 +1,25 @@
 <ion-header>
   <ion-navbar>
+    <button menuToggle ion-button icon-only>
+        <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>
-      Ionic Blank
+      Minhas turmas
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+  <blank-state *ngIf="loading" showSpinner="true">
+    <p>Carregando...</p>
+  </blank-state>
+
+  <blank-state *ngIf="turmas.length === 0" showIcon="true" iconName="sad">
+    <p>Você não se inscreveu em nenhuma turma</p>
+    <button ion-button block (click)="addTurma()">
+      Inscrever-ve em uma turma
+    </button>
+  </blank-state>
+
 </ion-content>

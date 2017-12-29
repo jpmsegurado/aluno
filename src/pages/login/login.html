@@ -1,0 +1,23 @@
+<ion-content>
+
+  <div class="content" padding>
+    <h5>Portal do Aluno</h5>
+    <form [formGroup]="form" (submit)="signIn(form)">
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Senha</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+
+      <div padding>
+        <button ion-button block [disabled]="loading || form.invalid" type="submit">
+          Entrar
+          <ion-spinner *ngIf="loading"></ion-spinner>
+        </button>
+      </div>
+    </form>
+  </div>
+</ion-content>

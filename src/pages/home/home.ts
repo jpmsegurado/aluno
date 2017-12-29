@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { AddTurmaPage } from '../add-turma/add-turma';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +8,16 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  public turmas: Array<any> = [];
 
+  constructor(
+    public navCtrl: NavController
+  ) {
+
+  }
+
+  addTurma() {
+    this.navCtrl.push(AddTurmaPage);
   }
 
 }
