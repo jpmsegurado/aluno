@@ -29,8 +29,17 @@ export class TurmaPage {
   }
 
   ionViewDidLoad() {
-    this.turmaProvider.getAtividades(this.turma.objectId).then((atividades) => {
-      this.atividades = atividades;
+    this.turmaProvider.getAtividades(this.turma.objectId).then((atividades: Array<any>) => {
+      this.atividades = atividades.map((atividade) => {
+        atividade.loading = true;
+        this.turmaProvider.getAnswer(atividade.objectId).then((respostas) => {
+          atividade.loading = false;
+          atividade.respondida = respostas.length > 0;
+        }, () => {
+          atividade.loading = false;
+        })
+        return atividade;
+      });
       this.loading = false;
     }, () => this.loading = false)
   }

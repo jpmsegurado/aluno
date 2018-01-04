@@ -31,7 +31,11 @@
 </ion-content>
 
 <ion-footer padding>
-  <button ion-button block (click)="iniciar(atividade)">
+  <button ion-button block (click)="iniciar(atividade)" *ngIf="!atividade.respondida">
     Iniciar Atividade
+  </button>
+  <button ion-button icon-right clear color="secondary" block *ngIf="atividade.respondida">
+    Atividade respondida
+    <ion-icon name="checkmark"></ion-icon>
   </button>
 </ion-footer>

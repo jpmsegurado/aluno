@@ -33,7 +33,9 @@
 
     <button ion-item *ngFor="let atividade of atividades" (click)="openAtividade(atividade)">
       <p>{{ atividade.nome }}</p>
-      <ion-icon name="ios-arrow-forward" hideWhen="ios" item-right></ion-icon>
+      <ion-icon name="ios-arrow-forward" hideWhen="ios" item-right *ngIf="!atividade.loading && !atividade.respondida"></ion-icon>
+      <ion-icon name="checkmark" color="secondary" hideWhen="ios" item-right *ngIf="!atividade.loading && atividade.respondida"></ion-icon>
+      <ion-spinner item-right *ngIf="atividade.loading"></ion-spinner>
     </button>
   </div>
 

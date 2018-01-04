@@ -72,10 +72,21 @@ export class TurmaProvider {
     const resposta = new Resposta();
     const atividade = new Atividade();
     const user = Parse.User.current();
+    atividade.id = atividadeId;
     resposta.set('aluno', user);
     resposta.set('atividade', atividade);
     resposta.set('questoes', questoes)
     return resposta.save();
+  }
+  getAnswer(atividadeId) {
+    const query = new Parse.Query('Resposta');
+    const Atividade = Parse.Object.extend('Atividade');
+    const atividade = new Atividade();
+    const user = Parse.User.current();
+    atividade.id = atividadeId;
+    query.equalTo('atividade', atividade);
+    query.equalTo('aluno', user);
+    return query.find();
   }
 
   getTurmas() {
