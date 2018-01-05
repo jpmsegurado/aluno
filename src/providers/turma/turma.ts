@@ -34,9 +34,14 @@ export class TurmaProvider {
     const user = Parse.User.current();
     inscricao.set('aluno', user);
     inscricao.set('turma', turma);
-    return inscricao.save().then((turma) => {
-      this.turmas.push(turma.toJSON());
-      this.observer.next(this.turmas);
+    return inscricao.save().then((inscricao) => {
+      const query = new Parse.Query('Turma');
+      query.include('turma.professor');
+      query.equalTo('objectId', turma.id);
+      return query.first().then((item) => {
+        this.turmas.push(item.toJSON());
+        return this.observer.next(this.turmas);
+      });
     });
   }
 

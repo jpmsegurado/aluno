@@ -1,0 +1,11 @@
+{
+  "android": {
+    "release": {
+      "keystore": "./keystore.jks",
+      "storePassword": "alunos",
+      "alias": "alunos",
+      "password": "alunos",
+      "keystoreType": "JKS"
+    }
+  }
+}

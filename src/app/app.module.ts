@@ -16,6 +16,8 @@ import { TurmaProvider } from '../providers/turma/turma';
 import { TurmaPage } from '../pages/turma/turma';
 import { AtividadePage } from '../pages/atividade/atividade';
 import { AtividadeQuestoesPage } from '../pages/atividade-questoes/atividade-questoes';
+import { ConteudoProvider } from '../providers/conteudo/conteudo';
+import { OneSignal } from '@ionic-native/onesignal';
 
 Parse.serverURL = 'https://professor-server.herokuapp.com/parse';
 Parse.initialize('9ac78096f6a609ac63227bc1ba09a004b8d513f7', '9ac78096f6a609ac63227bc1ba09a004b8d513f7');
@@ -52,7 +54,9 @@ Parse.initialize('9ac78096f6a609ac63227bc1ba09a004b8d513f7', '9ac78096f6a609ac63
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
-    TurmaProvider
+    TurmaProvider,
+    ConteudoProvider,
+    OneSignal
   ]
 })
 export class AppModule {}

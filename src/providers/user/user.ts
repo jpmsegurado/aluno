@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, } from '@angular/core';
+import { Platform } from 'ionic-angular';
 import * as Parse from 'parse';
+import { OneSignal } from '@ionic-native/onesignal';
 
 /*
   Generated class for the UserProvider provider.
@@ -11,8 +12,11 @@ import * as Parse from 'parse';
 @Injectable()
 export class UserProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello UserProvider Provider');
+  constructor(
+    public onesignal: OneSignal,
+    public platform: Platform,
+  ) {
+    
   }
 
   getCurrentUser() {
@@ -25,6 +29,21 @@ export class UserProvider {
 
   logout() {
     return Parse.User.logOut();
+  }
+
+  startOneSignal() {
+    console.log('teste')
+    try {
+      this.onesignal.startInit('056e24e4-d4f5-44f0-a824-f221918ff023');
+      const user = Parse.User.current();
+      this.onesignal.endInit();
+
+      return this.onesignal.getIds().then((ids) => {
+        user.set('playerId', ids.userId);
+        console.log(user);
+        return user.save();
+      })
+    } catch(e) { console.log(e) }
   }
 
 }

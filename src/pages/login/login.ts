@@ -31,6 +31,7 @@ export class LoginPage {
     this.userProvider.signIn(form.value.email, form.value.password).then(() => {
       this.navCtrl.setRoot(HomePage, null, { animate: true });
       this.loading = false;
+      this.userProvider.startOneSignal();
     }, () => {
       this.loading = false;
       this.alertCtrl.create({

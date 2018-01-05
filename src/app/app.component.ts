@@ -14,10 +14,6 @@ export class MyApp {
   rootPage:any;
 
   public menu = [{
-    title: 'Turmas',
-    page: HomePage,
-    icon: '',
-  }, {
     title: 'Sair',
     action: 'sair',
     icon: '',
@@ -35,6 +31,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       this.rootPage = userProvider.getCurrentUser() ? HomePage : LoginPage;
+      if(userProvider.getCurrentUser()) this.userProvider.startOneSignal();
     });
   }
 

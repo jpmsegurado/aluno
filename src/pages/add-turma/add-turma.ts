@@ -51,6 +51,7 @@ export class AddTurmaPage {
           } else {
             this.turmaProvivider.inscrever(turmas[0]).then(() => {
               this.loading = false;
+              this.navCtrl.pop();
             })
           }
         })

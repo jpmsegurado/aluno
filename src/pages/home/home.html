@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button menuToggle ion-button icon-only>
         <ion-icon name="menu"></ion-icon>
     </button>
@@ -24,7 +24,7 @@
 
   <ion-list *ngIf="turmas.length > 0">
     <button ion-item *ngFor="let turma of turmas" (click)="openTurma(turma)">
-      <h2>{{ turma.professor.username }}</h2>
+      <h2>{{ turma.professor.nome }}</h2>
       <p>{{ turma.nome }}</p>
       <ion-icon item-right name="ios-arrow-forward" hideWhen="ios"></ion-icon>
     </button>

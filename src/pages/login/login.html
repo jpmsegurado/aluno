@@ -1,19 +1,19 @@
 <ion-content>
 
   <div class="content" padding>
-    <h5>Portal do Aluno</h5>
+    <h3 ion-text color="white">Portal do Aluno - <span class="american">Nota 10</span></h3>
     <form [formGroup]="form" (submit)="signIn(form)">
-      <ion-item>
-        <ion-label floating>Email</ion-label>
+      <ion-item color="light">
+        <ion-label stacked color="light">Email</ion-label>
         <ion-input formControlName="email" type="email"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>Senha</ion-label>
+        <ion-label stacked color="light">Senha</ion-label>
         <ion-input formControlName="password" type="password"></ion-input>
       </ion-item>
 
       <div padding>
-        <button ion-button block [disabled]="loading || form.invalid" type="submit">
+        <button color="light" ion-button block [disabled]="loading || form.invalid" type="submit">
           Entrar
           <ion-spinner *ngIf="loading"></ion-spinner>
         </button>
