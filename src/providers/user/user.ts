@@ -31,19 +31,24 @@ export class UserProvider {
     return Parse.User.logOut();
   }
 
-  startOneSignal() {
-    console.log('teste')
-    try {
-      this.onesignal.startInit('056e24e4-d4f5-44f0-a824-f221918ff023');
-      const user = Parse.User.current();
-      this.onesignal.endInit();
+  signUp(value) {
+    const user = new Parse.User();
+    user.set('username', value.email);
+    user.set('nome', value.nome);
+    user.set('password', value.password);
+    user.set('email', value.email);
+    return user.save();
+  }
 
-      return this.onesignal.getIds().then((ids) => {
-        user.set('playerId', ids.userId);
-        console.log(user);
-        return user.save();
-      })
-    } catch(e) { console.log(e) }
+  startOneSignal() {
+    this.onesignal.startInit('056e24e4-d4f5-44f0-a824-f221918ff023');
+    const user = Parse.User.current();
+    this.onesignal.endInit();
+
+    return this.onesignal.getIds().then((ids) => {
+      user.set('playerId', ids.userId);
+      return user.save();
+    });
   }
 
 }

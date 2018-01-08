@@ -1,0 +1,25 @@
+page-register {
+    .scroll-content {
+        background-color: #0094cf;
+        .content {
+            width: 100%;
+            margin-top: calc(50vh - 165px);
+        }
+    }
+
+    .american {
+        font-family: american
+    }
+
+    .item {
+        padding-left: 0px;
+    }
+
+    .list, .item {
+        background-color: #0094cf;
+    }
+
+    .input-has-focus .label {
+        color: color($colors, white) !important;
+    }
+}

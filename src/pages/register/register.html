@@ -2,10 +2,14 @@
 
   <div class="content" padding>
     <h3 ion-text color="white">Portal do Aluno - <span class="american">Nota 10</span></h3>
-    <form [formGroup]="form" (submit)="signIn(form)">
+    <form [formGroup]="form" (submit)="signUp(form)">
       <ion-item color="light">
         <ion-label stacked color="light">Email</ion-label>
         <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <ion-item color="light">
+        <ion-label stacked color="light">Nome</ion-label>
+        <ion-input formControlName="nome" type="text"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label stacked color="light">Senha</ion-label>
@@ -16,12 +20,6 @@
         <button color="light" ion-button block [disabled]="loading || form.invalid" type="submit">
           Entrar
           <ion-spinner *ngIf="loading"></ion-spinner>
-        </button>
-      </div>
-
-      <div padding>
-        <button color="light" (click)="register()" clear ion-button block [disabled]="loading" type="button">
-          Criar uma conta
         </button>
       </div>
     </form>

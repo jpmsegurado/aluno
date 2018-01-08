@@ -3,16 +3,17 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserProvider } from '../../providers/user/user';
 import { HomePage } from '../home/home';
-import { RegisterPage } from '../register/register';
+
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-register',
+  templateUrl: 'register.html',
 })
-export class LoginPage {
+export class RegisterPage {
 
   public form: FormGroup = new FormGroup({
     email: new FormControl('', Validators.compose([Validators.email, Validators.required])),
+    nome: new FormControl('', Validators.required),
     password: new FormControl('', Validators.compose([Validators.minLength(6), Validators.required])),
   })
 
@@ -27,9 +28,9 @@ export class LoginPage {
 
   }
 
-  signIn(form: FormGroup) {
+  signUp(form: FormGroup) {
     this.loading = true;
-    this.userProvider.signIn(form.value.email, form.value.password).then(() => {
+    this.userProvider.signUp(form.value).then(() => {
       this.navCtrl.setRoot(HomePage, null, { animate: true });
       this.loading = false;
       this.userProvider.startOneSignal();
@@ -38,12 +39,8 @@ export class LoginPage {
       this.alertCtrl.create({
         message: 'Email ou senha inválidos',
         buttons: ['Ok'],
-      })
-    })
-  }
-
-  register() {
-    this.navCtrl.push(RegisterPage);
+      });
+    });
   }
 
 }
